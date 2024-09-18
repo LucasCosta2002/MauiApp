@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25">
+
+            <Button Text="Consultar Personajes"
+                    Clicked="OnCargarPersonajesClicked" 
+                    BackgroundColor="Indigo"
+                    TextColor="White"
+                    FontFamily="Bold"
+                    />
+
+            <Picker x:Name="SpeciePicker"
+                    Title="Selecciona una especie"
+                    SelectedIndexChanged="OnSpecieSelected"
+                    HorizontalOptions="Fill"
+            />
+
+
+            <Picker x:Name="StatusPicker"
+                    Title="Selecciona un estado"
+                    SelectedIndexChanged="OnStatusSelected"
+                    HorizontalOptions="Fill" />
+
+            <SearchBar Placeholder="Buscar por nombre"
+            TextChanged="OnSearchBarTextChanged" />
+
+            <CollectionView x:Name="PersonajesCollectionView">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                      Span="2" 
+                                      VerticalItemSpacing="20"
+                                      HorizontalItemSpacing="20"
+                     />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10" Padding="5" HasShadow="True">
+                            <VerticalStackLayout>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                                    <Label Text="{Binding Species}" FontSize="16" TextColor="Gray" HorizontalOptions="Center" />
+                                    <Label Text="{Binding Status}" FontSize="16" TextColor="Gray" HorizontalOptions="Center" />
+                                </StackLayout>
+
+                                <Image Source="{Binding Image}" HeightRequest="350" Aspect="AspectFit" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
